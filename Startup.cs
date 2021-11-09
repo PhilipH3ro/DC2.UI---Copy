@@ -23,6 +23,17 @@ namespace DC2.UI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication("MyAuthCookie").AddCookie("MyAuthCookie", options =>
+            {
+                options.Cookie.Name = "MyAuthCookie";
+                options.LoginPath = "/Account/Login";
+            });
+            services.AddAuthorization(options =>
+           {
+               options.AddPolicy("AdminOnly",
+                   policy => policy.RequireClaim("Admin"));
+
+           });
             services.AddRazorPages();
         }
 
@@ -45,6 +56,7 @@ namespace DC2.UI
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
