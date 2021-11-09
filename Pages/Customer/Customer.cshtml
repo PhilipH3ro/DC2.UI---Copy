@@ -1,6 +1,10 @@
 ﻿@page
 @model DC2.UI.Pages.Customer.CustomerModel
 @{
+        if (User.Identity.IsAuthenticated)
+    {
+        Layout = "_LayoutLogedIn";
+    }
 }
 
 <center>

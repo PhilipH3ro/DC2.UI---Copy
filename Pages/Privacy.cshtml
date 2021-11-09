@@ -2,6 +2,10 @@
 @model PrivacyModel
 @{
     ViewData["Title"] = "Privacy Policy";
+        if (User.Identity.IsAuthenticated)
+    {
+        Layout = "_LayoutLogedIn";
+    }
 }
 <h1>@ViewData["Title"]</h1>
 

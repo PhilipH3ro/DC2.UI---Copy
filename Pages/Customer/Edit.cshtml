@@ -1,6 +1,10 @@
 ﻿@page
 @model DC2.UI.Pages.Customer.EditModel
 @{
+    if (User.Identity.IsAuthenticated)
+    {
+        Layout = "_LayoutLogedIn";
+    }
 }
 
 
@@ -11,7 +15,7 @@
 </center>
 
 @*<div>@Model.CurrentCustomer.FirstName</div>
-<form asp-page-handler="Save">
+    <form asp-page-handler="Save">
     <input type="hidden" asp-for="CurrentCustomer.Id" value="@Model.CurrentCustomer.Id" />
     <input type="text" asp-for="CurrentCustomer.FirstName" value="@Model.CurrentCustomer.FirstName" />
     <input type="text" asp-for="CurrentCustomer.LastName" value="@Model.CurrentCustomer.LastName" />
@@ -22,7 +26,7 @@
 
     <button type="submit" class="btn btn-primary">Submit</button>
 
-</form>*@
+    </form>*@
 
 <form asp-page-handler="Save">
     <input type="hidden" class="form-control" asp-for="CurrentCustomer.Id" value="@Model.CurrentCustomer.Id">
@@ -47,15 +51,15 @@
         <input type="text" class="form-control" asp-for="CurrentCustomer.Secret" value="@Model.CurrentCustomer.Secret" id="secret" placeholder="Secret">
     </div>
     @*<div class="form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">I accept all cookies on this website</label>
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">I accept all cookies on this website</label>
         </div>*@
     <button type="submit" class="btn btn-primary">Submit</button>
     <a asp-page="./Customer" class="btn btn-primary">Back</a>
 </form>
 @*<h1>TEST</h1>
-<h6>ID: @Model.CurrentCustomer.Id</h6>
-<h6>Namn: @Model.CurrentCustomer.FirstName @Model.CurrentCustomer.LastName</h6>
-<h6>Email: @Model.CurrentCustomer.Email</h6>
-<h6>PhoneNumber: @Model.CurrentCustomer.PhoneNumber</h6>
-<h6>Secret: @Model.CurrentCustomer.Secret</h6>*@
+    <h6>ID: @Model.CurrentCustomer.Id</h6>
+    <h6>Namn: @Model.CurrentCustomer.FirstName @Model.CurrentCustomer.LastName</h6>
+    <h6>Email: @Model.CurrentCustomer.Email</h6>
+    <h6>PhoneNumber: @Model.CurrentCustomer.PhoneNumber</h6>
+    <h6>Secret: @Model.CurrentCustomer.Secret</h6>*@
