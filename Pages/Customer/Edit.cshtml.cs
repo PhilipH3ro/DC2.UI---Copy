@@ -4,11 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using DC2.UI.Data;
 using DC2.UI.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace DC2.UI.Pages.Customer
 {
+    [Authorize(Policy = "AdminOnly")]
     public class EditModel : PageModel
     {
         private readonly DataName Data;

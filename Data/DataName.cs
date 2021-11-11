@@ -12,7 +12,6 @@ namespace DC2.UI.Data
     {
         public List<CustomerDTO> GetAll()
         {
-
             var customers = LoadCustomers();
             return (from cust in customers
                     orderby cust.FirstName
@@ -56,9 +55,6 @@ namespace DC2.UI.Data
                          select cust).ToList();
 
             SaveCustomers(customers);
-
-
-
         }
 
         //private int GetNewId()
@@ -83,6 +79,5 @@ namespace DC2.UI.Data
             var jsonResponse = JsonConvert.SerializeObject(customers);
             File.WriteAllText(path, jsonResponse);
         }
-
     }
 }
