@@ -9,18 +9,18 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
 
-namespace DC2.UI.Pages.Customer
+namespace DC2.UI.Pages.User
 {
     [Authorize(Policy = "AdminOnly")]
-    public class AddCustomerModel : PageModel
+    public class AddModel : PageModel
     {
         [BindProperty]
-        public CustomerDTO CurrentCustomer { get; set; }
-        private DataName Data;
+        public UserDTO CurrentUser { get; set; }
+        private readonly IDataUser UserData;
 
-        public AddCustomerModel()
+        public AddModel(IDataUser DataUser)
         {
-            Data = new DataName();
+            UserData = DataUser;
         }
 
         public void OnGet()
@@ -31,8 +31,8 @@ namespace DC2.UI.Pages.Customer
         public IActionResult OnPostSave()
         {
             if (!ModelState.IsValid) return Page();
-            Data.AddCustomer(CurrentCustomer);
-            return RedirectToPage("./Customer");
+            UserData.AddUser(CurrentUser);
+            return RedirectToPage("./Index");
         }
     }
 }

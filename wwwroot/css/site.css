@@ -24,6 +24,29 @@ a {
   border-color: #1861ac;
 }
 
+.left {
+    float: left;
+    width: 66%;
+    height: 100%;
+/*    background-image: url("https://wallpaperaccess.com/full/1624845.jpg");
+    background-position: center;
+    background-size: cover;*/
+}
+.middle {
+/*    width: 75%;
+    height: 75%;*/
+    background-image: url("https://cdn.pixabay.com/photo/2017/04/10/13/09/background-2218517_1280.jpg");
+    background-position: center;
+    background-size: cover;
+}
+.right {
+    float: right;
+    width: 33%;
+    height: 100%;
+    background-image: url("https://cdn.pixabay.com/photo/2017/04/10/13/09/background-2218517_1280.jpg");
+    background-position: center;
+    background-size: cover;
+}
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
@@ -59,8 +82,8 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
 }
 .footer {
   position: absolute;

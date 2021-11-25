@@ -8,25 +8,24 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace DC2.UI.Pages.Customer
+namespace DC2.UI.Pages.Product
 {
     [Authorize(Policy = "AdminOnly")]
     public class EditModel : PageModel
     {
-        private readonly DataName Data;
-        public EditModel()
+        private readonly IDataProduct ProductData;
+        public EditModel(IDataProduct DataProduct)
         {
-            Data = new DataName();
+            ProductData = DataProduct;
         }
-
         [BindProperty]
-        public CustomerDTO CurrentCustomer { get; set; }
+        public ProductDTO CurrentProduct { get; set; }
 
 
-        public IActionResult OnGet(string id)
+        public IActionResult OnGet(int id)
         {
-            CurrentCustomer = Data.GetById(id);
-            if (CurrentCustomer is null) return RedirectToPage("./404");
+            CurrentProduct = ProductData.GetById(id);
+            if (CurrentProduct is null) return RedirectToPage("./404");
 
             return Page();
         }
@@ -35,8 +34,8 @@ namespace DC2.UI.Pages.Customer
             if (ModelState.IsValid)
             {
                 // save the new user
-                Data.UpdateCustomer(CurrentCustomer);
-                return RedirectToPage("./Customer", "Edit");
+                ProductData.UpdateProduct(CurrentProduct);
+                return RedirectToPage("./Index", "Edit");
             }
             return Page();
         }

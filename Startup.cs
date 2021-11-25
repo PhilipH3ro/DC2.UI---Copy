@@ -1,3 +1,4 @@
+using DC2.UI.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -23,6 +24,10 @@ namespace DC2.UI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IDataUser, DataUser>();
+            services.AddSingleton<IDataProduct, DataProduct>();
+            services.AddSingleton<IDataCart, DataCart>();
+            services.AddSingleton<IDataOrder, DataOrder>();
             services.AddAuthentication("MyAuthCookie").AddCookie("MyAuthCookie", options =>
             {
                 options.Cookie.Name = "MyAuthCookie";
@@ -30,10 +35,11 @@ namespace DC2.UI
             });
             services.AddAuthorization(options =>
            {
-               options.AddPolicy("AdminOnly",
-                   policy => policy.RequireClaim("Admin"));
+               options.AddPolicy("AdminOnly", policy => policy.RequireClaim("Admin"));
 
            });
+            services.AddSession();
+            services.AddMemoryCache();
             services.AddRazorPages();
         }
 
@@ -54,6 +60,7 @@ namespace DC2.UI
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            app.UseSession();
             app.UseRouting();
 
             app.UseAuthentication();

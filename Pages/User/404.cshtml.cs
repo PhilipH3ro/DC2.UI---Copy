@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace DC2.UI.Pages.Customer
+namespace DC2.UI.Pages.User
 {
     public class _404Model : PageModel
     {
